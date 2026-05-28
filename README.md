@@ -1,6 +1,6 @@
 # 💬 Yap-And-React — Real-Time Messaging App
 
-A simple real-time chat app built with **React** and **Supabase**. Anyone with the link can send text messages and emoji reactions that appear live for every connected user — no page refresh needed.
+A simple real-time chat app built with **React** and **Supabase**. Anyone with the link can send messages — including emojis — that appear live for every connected user, no page refresh needed.
 
 Built as a demo to showcase real-time web technology.
 
@@ -8,8 +8,7 @@ Built as a demo to showcase real-time web technology.
 
 ## What it does
 
-- Send text messages that appear instantly for everyone
-- React to messages with emoji that float up the screen
+- Send messages (text, emojis, or both) that appear instantly for everyone
 - Auto-assigned random username (e.g. "EpicOtter") that you can change
 - Anonymous option if no name is entered
 - Messages persist — new users see recent chat history on join
@@ -54,8 +53,7 @@ yap-and-react/
 │   ├── supabaseClient.js  ← Creates and exports the Supabase connection
 │   ├── components/
 │   │   ├── MessageList.jsx   ← Renders the list of messages
-│   │   ├── MessageBubble.jsx ← Single message bubble (text or emoji)
-│   │   ├── EmojiBar.jsx      ← Row of quick-send emoji buttons
+│   │   ├── MessageBubble.jsx ← Single message bubble
 │   │   └── UsernameBar.jsx   ← Displays and edits the current username
 │   └── main.jsx           ← Entry point, mounts the React app
 ├── .env                   ← Your Supabase keys (never commit this)
@@ -76,8 +74,7 @@ One table in Supabase is all you need.
 |---|---|---|
 | `id` | uuid | Auto-generated primary key |
 | `username` | text | Sender's display name |
-| `content` | text | The message text or emoji |
-| `type` | text | Either `"text"` or `"emoji"` |
+| `content` | text | The message content (text, emojis, or both) |
 | `sender_id` | text | Random ID stored in the browser to identify the sender |
 | `created_at` | timestamptz | Auto-set to the current time |
 
