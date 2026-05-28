@@ -17,12 +17,12 @@ Built as a demo to showcase real-time web technology.
 
 ## Tech stack
 
-| Layer | Tool | Why |
-|---|---|---|
-| Frontend | React + Vite | Fast, modern UI |
-| Backend / Database | Supabase | Free hosted Postgres + real-time built in |
+| Layer               | Tool                           | Why                                            |
+| ------------------- | ------------------------------ | ---------------------------------------------- |
+| Frontend            | React + Vite                   | Fast, modern UI                                |
+| Backend / Database  | Supabase                       | Free hosted Postgres + real-time built in      |
 | Real-time transport | Supabase Realtime (WebSockets) | Broadcasts new messages to all users instantly |
-| Deployment | Vercel | Free, connects to GitHub |
+| Deployment          | Vercel                         | Free, connects to GitHub                       |
 
 ---
 
@@ -70,15 +70,16 @@ One table in Supabase is all you need.
 
 **Table name:** `messages`
 
-| Column | Type | Notes |
-|---|---|---|
-| `id` | uuid | Auto-generated primary key |
-| `username` | text | Sender's display name |
-| `content` | text | The message content (text, emojis, or both) |
-| `sender_id` | text | Random ID stored in the browser to identify the sender |
-| `created_at` | timestamptz | Auto-set to the current time |
+| Column       | Type        | Notes                                                  |
+| ------------ | ----------- | ------------------------------------------------------ |
+| `id`         | uuid        | Auto-generated primary key                             |
+| `username`   | text        | Sender's display name                                  |
+| `content`    | text        | The message content (text, emojis, or both)            |
+| `sender_id`  | text        | Random ID stored in the browser to identify the sender |
+| `created_at` | timestamptz | Auto-set to the current time                           |
 
 Row Level Security (RLS) is enabled with two policies:
+
 - **Anyone can read** messages
 - **Anyone can insert** messages
 
@@ -86,4 +87,4 @@ Row Level Security (RLS) is enabled with two policies:
 
 ## Authors
 
-Built by Ahmed Ihsab and Elvin Hrytsyuk as a real-time web demo.
+Built by Ahmed Ihsan and Elvin Hrytsyuk as a real-time web demo.
