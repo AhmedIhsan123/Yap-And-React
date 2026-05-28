@@ -51,7 +51,11 @@ function App() {
 
 	return (
 		<>
-			<p>Messages: {messages}</p>
+			{messages.map((message) => (
+				<p key={message.id}>
+					{message.username}: {message.content}
+				</p>
+			))}
 
 			<input
 				value={inputValue}
