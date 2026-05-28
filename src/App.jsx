@@ -1,10 +1,13 @@
-import { supabase } from "./supbaseClient.js";
+import { supabase } from "./supabaseClient.js";
 import { useEffect, useState } from "react";
+
+// Generate a random sender id
+const senderId = crypto.randomUUID();
 
 function App() {
 	// State variables
-	const [messages, setMessages] = useState(null);
-	const [inputvalue, setInputValue] = useState(null);
+	const [messages, setMessages] = useState([]);
+	const [inputValue, setInputValue] = useState("");
 
 	// Load messages and subscribe to changes on load
 	useEffect(() => {
@@ -35,9 +38,27 @@ function App() {
 		return () => supabase.removeChannel(channel);
 	}, []);
 
+	async function sendMessage() {
+		if (inputValue.trim() !== "") {
+			// Write to the messages table
+			await supabase
+				.from("messages")
+				.insert({ username: "You", content: inputValue, sender_id: senderId });
+			// Reset input value after sending message
+			setInputValue("");
+		}
+	}
+
 	return (
 		<>
 			<p>Messages: {messages}</p>
+
+			<input
+				value={inputValue}
+				onChange={(e) => setInputValue(e.target.value)}
+				onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+			/>
+			<button onClick={sendMessage}>Send</button>
 		</>
 	);
 }
