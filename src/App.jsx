@@ -1,5 +1,6 @@
 import { supabase } from "./supabaseClient.js";
 import { useEffect, useState } from "react";
+import MessageList from "./components/MessageList.jsx";
 
 // Generate a random sender id
 const senderId = crypto.randomUUID();
@@ -51,11 +52,9 @@ function App() {
 
 	return (
 		<>
-			{messages.map((message) => (
-				<p key={message.id}>
-					{message.username}: {message.content}
-				</p>
-			))}
+			{/* This is the component that will display all messages */}
+			{/* {console.log(messages[0])} */}
+			<MessageList messages={messages} />
 
 			<input
 				value={inputValue}
