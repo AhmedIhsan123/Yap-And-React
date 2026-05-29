@@ -1,6 +1,7 @@
 import { supabase } from "./supabaseClient.js";
 import { useEffect, useState } from "react";
 import MessageList from "./components/MessageList.jsx";
+import UsernameBar from "./components/UsernameBar.jsx";
 
 // Generate a random sender id
 const senderId = crypto.randomUUID();
@@ -9,6 +10,7 @@ function App() {
 	// State variables
 	const [messages, setMessages] = useState([]);
 	const [inputValue, setInputValue] = useState("");
+	const [username, setUsername] = useState("John Doe");
 
 	// Load messages and subscribe to changes on load
 	useEffect(() => {
@@ -42,9 +44,11 @@ function App() {
 	async function sendMessage() {
 		if (inputValue.trim() !== "") {
 			// Write to the messages table
-			await supabase
-				.from("messages")
-				.insert({ username: "You", content: inputValue, sender_id: senderId });
+			await supabase.from("messages").insert({
+				username: username,
+				content: inputValue,
+				sender_id: senderId,
+			});
 			// Reset input value after sending message
 			setInputValue("");
 		}
@@ -54,7 +58,10 @@ function App() {
 		<>
 			{/* This is the component that will display all messages */}
 			{/* {console.log(messages[0])} */}
-			<MessageList messages={messages} />
+			<section>
+				<UsernameBar username={username} setUsername={setUsername} />
+				<MessageList messages={messages} />
+			</section>
 
 			<input
 				value={inputValue}

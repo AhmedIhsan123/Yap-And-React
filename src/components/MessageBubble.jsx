@@ -1,4 +1,4 @@
 export default function MessageBubble({ message }) {
 	// console.log(message);
-	return <p>{`${message.content}`}</p>;
+	return <p>{`<${message.username}>: ${message.content}`}</p>;
 }
